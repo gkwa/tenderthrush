@@ -15,8 +15,8 @@ if container_exists "test-docker"; then
 fi
 
 # Test the Docker installation
-echo "Launching test container from docker-container image..."
-incus launch docker-container test-docker
+echo "Launching test container from ubuntu-noble-docker image..."
+incus launch ubuntu-noble-docker test-docker
 
 echo "Testing Docker in the container..."
 incus exec test-docker -- docker run --rm hello-world

@@ -19,7 +19,7 @@ echo "Creating Docker profile..."
 ./create-docker-profile.sh
 
 # Check if base image exists, if not create it
-if ! incus image show 003-need-to-fix &>/dev/null; then
+if ! incus image show ubuntu-noble-base &>/dev/null; then
     echo "Base image not found, creating it..."
     packer build base-image.pkr.hcl 2>&1 | tee base-output.txt
 

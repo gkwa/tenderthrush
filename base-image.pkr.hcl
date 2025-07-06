@@ -9,7 +9,7 @@ packer {
 
 source "incus" "base" {
   image          = "images:ubuntu/noble/cloud"
-  output_image   = "003-need-to-fix"
+  output_image   = "ubuntu-noble-base"
   container_name = "tenderbrush-base"
   reuse          = true
   skip_publish   = true
@@ -18,10 +18,6 @@ source "incus" "base" {
 build {
   sources = ["incus.base"]
   provisioner "shell" {
-    inline = [
-      "cloud-init status --wait",
-      "apt-get update",
-      "apt-get install -y curl git",
-    ]
+    scripts = ["base-setup.sh"]
   }
 }

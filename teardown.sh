@@ -41,18 +41,18 @@ else
 fi
 
 # Clean up images SECOND (they might depend on profiles)
-if image_exists "docker-container"; then
-    echo "Deleting image: docker-container"
-    incus image delete docker-container
+if image_exists "ubuntu-noble-docker"; then
+    echo "Deleting image: ubuntu-noble-docker"
+    incus image delete ubuntu-noble-docker
 else
-    echo "Image docker-container does not exist, skipping..."
+    echo "Image ubuntu-noble-docker does not exist, skipping..."
 fi
 
-if image_exists "003-need-to-fix"; then
-    echo "Deleting image: 003-need-to-fix"
-    incus image delete 003-need-to-fix
+if image_exists "ubuntu-noble-base"; then
+    echo "Deleting image: ubuntu-noble-base"
+    incus image delete ubuntu-noble-base
 else
-    echo "Image 003-need-to-fix does not exist, skipping..."
+    echo "Image ubuntu-noble-base does not exist, skipping..."
 fi
 
 # Clean up profile LAST (after all dependencies are removed)

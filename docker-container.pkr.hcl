@@ -9,7 +9,7 @@ packer {
 
 source "incus" "base" {
   image          = "images:ubuntu/noble/cloud"
-  output_image   = "docker-container"
+  output_image   = "ubuntu-noble-docker"
   container_name = "tenderbrush-docker"
   reuse          = true
   skip_publish   = true
@@ -20,23 +20,14 @@ build {
   sources = ["incus.base"]
 
   provisioner "shell" {
-    inline = [
-      "cloud-init status --wait",
-      "echo 'Container is ready for Docker installation'",
-    ]
+    scripts = ["container-init.sh"]
   }
 
   provisioner "shell" {
-    scripts = [
-      "docker-setup.sh",
-    ]
+    scripts = ["docker-setup.sh"]
   }
 
   provisioner "shell" {
-    inline = [
-      "echo 'Testing Docker installation...'",
-      "docker run --rm hello-world",
-      "echo 'Docker is working correctly in the container!'",
-    ]
+    scripts = ["docker-test.sh"]
   }
 }
