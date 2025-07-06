@@ -3,13 +3,16 @@ set -e
 set -x
 set -u
 
-timeout 1m bash -c '
- echo waiting for network
- until ping -c 1 google.com &>/dev/null
- do
-   sleep 1
- done
-'
+# Debug: Check network and DNS are working with defaults
+echo "=== Testing default network and DNS configuration ==="
+echo "Current DNS config:"
+cat /etc/resolv.conf
+echo "Network interfaces:"
+ip addr show
+echo "Testing connectivity to external servers:"
+ping -c 1 8.8.8.8
+echo "Testing DNS resolution:"
+host archive.ubuntu.com || echo "host command not available, will test via apt"
 
 # Update package list
 apt-get update
@@ -28,7 +31,7 @@ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --dearmor -o /usr/
 # Add Docker repository
 echo \
     "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu \
- $(lsb_release -cs) stable" | tee /etc/apt/sources.list.d/docker.list >/dev/null
+$(lsb_release -cs) stable" | tee /etc/apt/sources.list.d/docker.list >/dev/null
 
 # Update package list with Docker repo
 apt-get update
