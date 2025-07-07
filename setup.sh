@@ -39,5 +39,3 @@ if container_exists tenderbrush; then
     echo Cleaning up tenderbrush container after Docker image creation...
     incus delete tenderbrush --force
 fi
-
-echo Setup completed successfully
