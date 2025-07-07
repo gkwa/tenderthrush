@@ -17,11 +17,10 @@ host archive.ubuntu.com || echo host command not available, will test via apt
 # Update package list
 apt-get update
 
-# Install prerequisites
+# Install Docker prerequisites (curl and git already available from base image)
 apt-get install -y \
     apt-transport-https \
     ca-certificates \
-    curl \
     gnupg \
     lsb-release
 

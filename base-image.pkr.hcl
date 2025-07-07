@@ -12,7 +12,7 @@ source "incus" "base" {
   output_image   = "ubuntu-noble-base"
   container_name = "tenderbrush-base"
   reuse          = true
-  skip_publish   = true
+  skip_publish   = false
 }
 
 build {

@@ -8,7 +8,7 @@ packer {
 }
 
 source "incus" "base" {
-  image          = "images:ubuntu/noble/cloud"
+  image          = "ubuntu-noble-base"
   output_image   = "ubuntu-noble-docker"
   container_name = "tenderbrush-docker"
   reuse          = true
@@ -18,10 +18,6 @@ source "incus" "base" {
 
 build {
   sources = ["incus.base"]
-
-  provisioner "shell" {
-    scripts = ["container-init.sh"]
-  }
 
   provisioner "shell" {
     scripts = ["docker-setup.sh"]
