@@ -3,7 +3,7 @@ set -e
 set -x
 set -u
 
-packer init .
+packer init -upgrade .
 
 # Function to check if container exists
 container_exists() {
