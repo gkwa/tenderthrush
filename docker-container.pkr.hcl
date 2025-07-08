@@ -1,12 +1,3 @@
-packer {
-  required_plugins {
-    incus = {
-      version = ">= 1.0.0"
-      source  = "github.com/bketelsen/incus"
-    }
-  }
-}
-
 source "incus" "base" {
   image          = "ubuntu-noble-base"
   output_image   = "ubuntu-noble-docker"

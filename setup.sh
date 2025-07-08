@@ -3,6 +3,8 @@ set -e
 set -x
 set -u
 
+packer init .
+
 # Function to check if container exists
 container_exists() {
     incus list --format csv | grep -q "^$1,"
